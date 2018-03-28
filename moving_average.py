@@ -8,7 +8,7 @@ fm = get_foundry_manager()
 #Create Spark context
 sc = fm._sql_context
 
-# Read dataset and check schema
+# Read dataset and check schema, optionnal second argument to choose branch
 df = fm.read_dataset("/prepare_pivoted_incremental")
 df.printSchema()
 # Moving average is done using a window
