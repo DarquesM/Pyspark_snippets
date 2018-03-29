@@ -1,0 +1,14 @@
+# Basic usage of user defined functions with pyspark
+# These simple operations would normally not need an udf (just as an example)
+
+from pyspark.sql import functions as F
+
+# The x[0] argument applies to the F.struct object passed when calling the udf
+# NOT to the DataFrame
+# Although the F.struct gives 2 columns, only one can be used in the function
+
+div_mille_udf = F.udf(lambda x: x[0]/1000, DoubleType())
+df.withColumn('result', div_mille_udf(F.struct('timestamp', 'FF_1')))
+
+# See : https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame.withColumn
+# Also : https://stackoverflow.com/questions/42540169/pyspark-pass-multiple-columns-in-udf
