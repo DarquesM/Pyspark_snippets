@@ -1,4 +1,4 @@
-# Basic usage of user defined functions with pyspark
+.# Basic usage of user defined functions with pyspark
 # These simple operations would normally not need an udf (just as an example)
 
 from pyspark.sql import functions as F
@@ -7,7 +7,8 @@ from pyspark.sql import functions as F
 # NOT to the DataFrame
 # Although the F.struct gives 2 columns, only one can be used in the function
 
-div_mille_udf = F.udf(lambda x: x[0]/1000, DoubleType())
+# When dividing, do not forget the dot after 1000 to comply with DoubleType()
+div_mille_udf = F.udf(lambda x: x[0]/1000., DoubleType())
 # Use F.struct instead of Array
 df.withColumn('result', div_mille_udf(F.struct('timestamp', 'FF_1')))
 
