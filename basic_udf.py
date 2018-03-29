@@ -1,4 +1,4 @@
-.# Basic usage of user defined functions with pyspark
+# Basic usage of user defined functions with pyspark
 # These simple operations would normally not need an udf (just as an example)
 
 from pyspark.sql import functions as F
