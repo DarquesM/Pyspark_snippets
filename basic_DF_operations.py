@@ -36,7 +36,7 @@ def phase_detection(df):
     its value to a new column
     '''
     det_phase = (F.lag(col('Phase'), 0).over(window_a)) !=\
-                    (F.lead(col('Phase'), 1).over(window_a))    
+                (F.lead(col('Phase'), 1).over(window_a))    
     det_end = (F.lead(col('Phase'), 1).over(window_a)).isNull()    
     result_phase = (when(det_phase, df['Phase'])\
                    .when(det_end, df['Phase'])\
